@@ -33,7 +33,7 @@ public class RestaurantResource {
      */
     @GET
     @Path("/test")
-    @Produces(MediaType.APPLICATION_XML)
+    @Produces(MediaType.TEXT_PLAIN)
     public String getXml() {
         //TODO return proper representation object
         return "Teste 1";
