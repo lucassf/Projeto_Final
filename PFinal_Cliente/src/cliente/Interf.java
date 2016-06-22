@@ -7,7 +7,10 @@ package cliente;
 
 import java.io.*;
 import java.net.*;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 
 /**
@@ -102,22 +105,25 @@ public class Interf extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //esqueleto da aplicação para criar o menu
-        /*
-        StringBuilder content = new StringBuilder();
-        content.a
+        List<String> lista = new LinkedList<String>();
 
-        // many of these calls can throw exceptions, so i've just
-        // wrapped them all in one try/catch statement.
         try
         {
           // create a url object
-          URL url = new URL(theUrl);
+          URL url = new URL("blabla/wrweerw/bsds"); //TROCAR PELO LOCALHOST
 
           // create a urlconnection object
-          URLConnection urlConnection = url.openConnection();
+          HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+	  conn.setRequestMethod("GET");
+	  conn.setRequestProperty("Accept", "application/json");
+
+	  if (conn.getResponseCode() != 200) {
+            throw new RuntimeException("Failed : HTTP error code : "
+		 + conn.getResponseCode());
+	  }
 
           // wrap the urlconnection in a bufferedreader
-          BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+          BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 
           String line;
 
@@ -125,7 +131,8 @@ public class Interf extends javax.swing.JFrame {
           while ((line = bufferedReader.readLine()) != null)
           {
             //LINE: VAI TER UM PRETO E O SEU PREÇO
-            content.append(line + "\n");
+            lista.add(line);
+            
           }
           bufferedReader.close();
         }
@@ -133,12 +140,10 @@ public class Interf extends javax.swing.JFrame {
         {
           e.printStackTrace();
         }
-        content.toString();
-        */
-        teste t1 = new teste();
+      //  content.toString();
         DefaultListModel dlm = new DefaultListModel();
-        for (int i = 0; i <7; i++)
-            dlm.addElement(t1.str + " "+ i);
+        for (int i = 0; i <lista.size(); i++)
+            dlm.addElement(lista.get(i));
         jList1.setModel(dlm);        
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -146,15 +151,55 @@ public class Interf extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         List<String> lis;
         lis = jList1.getSelectedValuesList();
-        lis.add(endereco.getText());
-        for (int i = 0; i<lis.size(); i++)
+        lis.add(endereco.getText());        
+        try {
+
+            URL url = new URL("http://localhost:8080/RESTfulExample/json/product/post");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setDoOutput(true);
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/json");
+            String input = lis.toString();
+            OutputStream os = conn.getOutputStream();
+            os.write(input.getBytes());
+            os.flush();
+            if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
+			throw new RuntimeException("Failed : HTTP error code : "
+				+ conn.getResponseCode());
+            }
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+				(conn.getInputStream())));
+            //abaixo: para testar  o que foi escrito no server 
+            /*
+            String output;
+            System.out.println("Output from Server .... \n");
+            while ((output = br.readLine()) != null) {
+			System.out.println(output);
+            }*/
+
+            conn.disconnect();
+
+	  } catch (MalformedURLException e) {
+
+		e.printStackTrace();
+
+	  } catch (IOException e) {
+
+		e.printStackTrace();
+
+	 }
+
+		String input = "{\"qty\":100,\"name\":\"iPad 4\"}";
+        
+        /*for (int i = 0; i<lis.size(); i++)
         {
            String st[];
            st = lis.get(i).split("\\s");
            //ao invez de printar, mandar ao servidor!!
            System.out.println(st[0] + "--" + st[1]);
           // System.out.println("bla");
-        }
+        }*/
         
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
