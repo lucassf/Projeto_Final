@@ -130,7 +130,7 @@ public class Interf extends javax.swing.JFrame {
           // read from the urlconnection via the bufferedreader
           while ((line = bufferedReader.readLine()) != null)
           {
-            //LINE: VAI TER UM PRETO E O SEU PREÇO
+            //LINE: VAI TER UM PRATO E O SEU PREÇO
             lista.add(line);
             
           }
@@ -154,6 +154,7 @@ public class Interf extends javax.swing.JFrame {
         lis.add(endereco.getText());        
         try {
 
+            //MUDAR A URL PARA O CORRETO
             URL url = new URL("http://localhost:8080/RESTfulExample/json/product/post");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);
