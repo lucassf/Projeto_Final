@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateFornecedoresTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateFornecedoresLabel_idfornecedores}" for="idfornecedores" />
+                    <h:inputText id="idfornecedores" value="#{fornecedoresController.selected.idfornecedores}" title="#{bundle.CreateFornecedoresTitle_idfornecedores}" required="true" requiredMessage="#{bundle.CreateFornecedoresRequiredMessage_idfornecedores}"/>
+                    <h:outputLabel value="#{bundle.CreateFornecedoresLabel_nome}" for="nome" />
+                    <h:inputText id="nome" value="#{fornecedoresController.selected.nome}" title="#{bundle.CreateFornecedoresTitle_nome}" required="true" requiredMessage="#{bundle.CreateFornecedoresRequiredMessage_nome}"/>
+                    <h:outputLabel value="#{bundle.CreateFornecedoresLabel_cnpj}" for="cnpj" />
+                    <h:inputText id="cnpj" value="#{fornecedoresController.selected.cnpj}" title="#{bundle.CreateFornecedoresTitle_cnpj}" required="true" requiredMessage="#{bundle.CreateFornecedoresRequiredMessage_cnpj}"/>
+                    <h:outputLabel value="#{bundle.CreateFornecedoresLabel_endereco}" for="endereco" />
+                    <h:inputText id="endereco" value="#{fornecedoresController.selected.endereco}" title="#{bundle.CreateFornecedoresTitle_endereco}" />
+                    <h:outputLabel value="#{bundle.CreateFornecedoresLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{fornecedoresController.selected.estado}" title="#{bundle.CreateFornecedoresTitle_estado}" required="true" requiredMessage="#{bundle.CreateFornecedoresRequiredMessage_estado}"/>
+                    <h:outputLabel value="#{bundle.CreateFornecedoresLabel_cidade}" for="cidade" />
+                    <h:inputText id="cidade" value="#{fornecedoresController.selected.cidade}" title="#{bundle.CreateFornecedoresTitle_cidade}" required="true" requiredMessage="#{bundle.CreateFornecedoresRequiredMessage_cidade}"/>
+                    <h:outputLabel value="#{bundle.CreateFornecedoresLabel_bairro}" for="bairro" />
+                    <h:inputText id="bairro" value="#{fornecedoresController.selected.bairro}" title="#{bundle.CreateFornecedoresTitle_bairro}" />
+                    <h:outputLabel value="#{bundle.CreateFornecedoresLabel_telefone1}" for="telefone1" />
+                    <h:inputText id="telefone1" value="#{fornecedoresController.selected.telefone1}" title="#{bundle.CreateFornecedoresTitle_telefone1}" required="true" requiredMessage="#{bundle.CreateFornecedoresRequiredMessage_telefone1}"/>
+                    <h:outputLabel value="#{bundle.CreateFornecedoresLabel_telefone2}" for="telefone2" />
+                    <h:inputText id="telefone2" value="#{fornecedoresController.selected.telefone2}" title="#{bundle.CreateFornecedoresTitle_telefone2}" />
+                    <h:outputLabel value="#{bundle.CreateFornecedoresLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{fornecedoresController.selected.email}" title="#{bundle.CreateFornecedoresTitle_email}" required="true" requiredMessage="#{bundle.CreateFornecedoresRequiredMessage_email}"/>
+                    <h:outputLabel value="#{bundle.CreateFornecedoresLabel_dataDeCadastro}" for="dataDeCadastro" />
+                    <h:inputText id="dataDeCadastro" value="#{fornecedoresController.selected.dataDeCadastro}" title="#{bundle.CreateFornecedoresTitle_dataDeCadastro}" required="true" requiredMessage="#{bundle.CreateFornecedoresRequiredMessage_dataDeCadastro}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{fornecedoresController.create}" value="#{bundle.CreateFornecedoresSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{fornecedoresController.prepareList}" value="#{bundle.CreateFornecedoresShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateFornecedoresIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

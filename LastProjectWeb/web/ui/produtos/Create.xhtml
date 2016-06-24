@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateProdutosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateProdutosLabel_idProdutos}" for="idProdutos" />
+                    <h:inputText id="idProdutos" value="#{produtosController.selected.idProdutos}" title="#{bundle.CreateProdutosTitle_idProdutos}" required="true" requiredMessage="#{bundle.CreateProdutosRequiredMessage_idProdutos}"/>
+                    <h:outputLabel value="#{bundle.CreateProdutosLabel_descricao}" for="descricao" />
+                    <h:inputText id="descricao" value="#{produtosController.selected.descricao}" title="#{bundle.CreateProdutosTitle_descricao}" required="true" requiredMessage="#{bundle.CreateProdutosRequiredMessage_descricao}"/>
+                    <h:outputLabel value="#{bundle.CreateProdutosLabel_idCategoria}" for="idCategoria" />
+                    <h:inputText id="idCategoria" value="#{produtosController.selected.idCategoria}" title="#{bundle.CreateProdutosTitle_idCategoria}" required="true" requiredMessage="#{bundle.CreateProdutosRequiredMessage_idCategoria}"/>
+                    <h:outputLabel value="#{bundle.CreateProdutosLabel_margem}" for="margem" />
+                    <h:inputText id="margem" value="#{produtosController.selected.margem}" title="#{bundle.CreateProdutosTitle_margem}" required="true" requiredMessage="#{bundle.CreateProdutosRequiredMessage_margem}"/>
+                    <h:outputLabel value="#{bundle.CreateProdutosLabel_precoCusto}" for="precoCusto" />
+                    <h:inputText id="precoCusto" value="#{produtosController.selected.precoCusto}" title="#{bundle.CreateProdutosTitle_precoCusto}" required="true" requiredMessage="#{bundle.CreateProdutosRequiredMessage_precoCusto}"/>
+                    <h:outputLabel value="#{bundle.CreateProdutosLabel_precoVenda}" for="precoVenda" />
+                    <h:inputText id="precoVenda" value="#{produtosController.selected.precoVenda}" title="#{bundle.CreateProdutosTitle_precoVenda}" required="true" requiredMessage="#{bundle.CreateProdutosRequiredMessage_precoVenda}"/>
+                    <h:outputLabel value="#{bundle.CreateProdutosLabel_fabricante}" for="fabricante" />
+                    <h:inputText id="fabricante" value="#{produtosController.selected.fabricante}" title="#{bundle.CreateProdutosTitle_fabricante}" required="true" requiredMessage="#{bundle.CreateProdutosRequiredMessage_fabricante}"/>
+                    <h:outputLabel value="#{bundle.CreateProdutosLabel_fornecedor}" for="fornecedor" />
+                    <h:inputText id="fornecedor" value="#{produtosController.selected.fornecedor}" title="#{bundle.CreateProdutosTitle_fornecedor}" required="true" requiredMessage="#{bundle.CreateProdutosRequiredMessage_fornecedor}"/>
+                    <h:outputLabel value="#{bundle.CreateProdutosLabel_dataDeCadastro}" for="dataDeCadastro" />
+                    <h:inputText id="dataDeCadastro" value="#{produtosController.selected.dataDeCadastro}" title="#{bundle.CreateProdutosTitle_dataDeCadastro}" required="true" requiredMessage="#{bundle.CreateProdutosRequiredMessage_dataDeCadastro}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{produtosController.create}" value="#{bundle.CreateProdutosSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{produtosController.prepareList}" value="#{bundle.CreateProdutosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateProdutosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

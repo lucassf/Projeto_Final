@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewFornecedoresTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewFornecedoresLabel_idfornecedores}"/>
+                    <h:outputText value="#{fornecedoresController.selected.idfornecedores}" title="#{bundle.ViewFornecedoresTitle_idfornecedores}"/>
+                    <h:outputText value="#{bundle.ViewFornecedoresLabel_nome}"/>
+                    <h:outputText value="#{fornecedoresController.selected.nome}" title="#{bundle.ViewFornecedoresTitle_nome}"/>
+                    <h:outputText value="#{bundle.ViewFornecedoresLabel_cnpj}"/>
+                    <h:outputText value="#{fornecedoresController.selected.cnpj}" title="#{bundle.ViewFornecedoresTitle_cnpj}"/>
+                    <h:outputText value="#{bundle.ViewFornecedoresLabel_endereco}"/>
+                    <h:outputText value="#{fornecedoresController.selected.endereco}" title="#{bundle.ViewFornecedoresTitle_endereco}"/>
+                    <h:outputText value="#{bundle.ViewFornecedoresLabel_estado}"/>
+                    <h:outputText value="#{fornecedoresController.selected.estado}" title="#{bundle.ViewFornecedoresTitle_estado}"/>
+                    <h:outputText value="#{bundle.ViewFornecedoresLabel_cidade}"/>
+                    <h:outputText value="#{fornecedoresController.selected.cidade}" title="#{bundle.ViewFornecedoresTitle_cidade}"/>
+                    <h:outputText value="#{bundle.ViewFornecedoresLabel_bairro}"/>
+                    <h:outputText value="#{fornecedoresController.selected.bairro}" title="#{bundle.ViewFornecedoresTitle_bairro}"/>
+                    <h:outputText value="#{bundle.ViewFornecedoresLabel_telefone1}"/>
+                    <h:outputText value="#{fornecedoresController.selected.telefone1}" title="#{bundle.ViewFornecedoresTitle_telefone1}"/>
+                    <h:outputText value="#{bundle.ViewFornecedoresLabel_telefone2}"/>
+                    <h:outputText value="#{fornecedoresController.selected.telefone2}" title="#{bundle.ViewFornecedoresTitle_telefone2}"/>
+                    <h:outputText value="#{bundle.ViewFornecedoresLabel_email}"/>
+                    <h:outputText value="#{fornecedoresController.selected.email}" title="#{bundle.ViewFornecedoresTitle_email}"/>
+                    <h:outputText value="#{bundle.ViewFornecedoresLabel_dataDeCadastro}"/>
+                    <h:outputText value="#{fornecedoresController.selected.dataDeCadastro}" title="#{bundle.ViewFornecedoresTitle_dataDeCadastro}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{fornecedoresController.destroyAndView}" value="#{bundle.ViewFornecedoresDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewFornecedoresEditLink}"/>
+                <br />
+                <h:commandLink action="#{fornecedoresController.prepareCreate}" value="#{bundle.ViewFornecedoresCreateLink}" />
+                <br />
+                <h:commandLink action="#{fornecedoresController.prepareList}" value="#{bundle.ViewFornecedoresShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewFornecedoresIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

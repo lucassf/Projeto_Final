@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCategoriasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateCategoriasLabel_idCategorias}" for="idCategorias" />
+                    <h:inputText id="idCategorias" value="#{categoriasController.selected.idCategorias}" title="#{bundle.CreateCategoriasTitle_idCategorias}" required="true" requiredMessage="#{bundle.CreateCategoriasRequiredMessage_idCategorias}"/>
+                    <h:outputLabel value="#{bundle.CreateCategoriasLabel_descricao}" for="descricao" />
+                    <h:inputText id="descricao" value="#{categoriasController.selected.descricao}" title="#{bundle.CreateCategoriasTitle_descricao}" required="true" requiredMessage="#{bundle.CreateCategoriasRequiredMessage_descricao}"/>
+                    <h:outputLabel value="#{bundle.CreateCategoriasLabel_dataDeCadastro}" for="dataDeCadastro" />
+                    <h:inputText id="dataDeCadastro" value="#{categoriasController.selected.dataDeCadastro}" title="#{bundle.CreateCategoriasTitle_dataDeCadastro}" required="true" requiredMessage="#{bundle.CreateCategoriasRequiredMessage_dataDeCadastro}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{categoriasController.create}" value="#{bundle.CreateCategoriasSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{categoriasController.prepareList}" value="#{bundle.CreateCategoriasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateCategoriasIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
