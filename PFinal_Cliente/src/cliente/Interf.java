@@ -106,7 +106,7 @@ public class Interf extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //esqueleto da aplicação para criar o menu
         List<String> lista = new LinkedList<String>();
-        lista.add("pra1 32");        
+        lista.add("pra1 bla 32");        
         lista.add("pra2 72");        
         lista.add("pra3 62");
         /*
@@ -154,18 +154,23 @@ public class Interf extends javax.swing.JFrame {
         List<String> lis, lis2;
         lis2 = new LinkedList<String>();
         String temp[];
+        String temp2;
         lis = jList1.getSelectedValuesList();
         for (int i = 0; i<lis.size(); i++){            
             temp = lis.get(i).split(" ");
       //      temp[0] = temp[0] + ";";
        //     temp[1] = temp[1] + ";";
-            lis2.add(temp[0]);
-            lis2.add(temp[1]);
+            temp2 = "";
+            for (int j = 0; j<temp.length-1; j++){
+                temp2 = temp2 + " " + temp[j];
+            }
+            lis2.add(temp2);
         }        
         lis2.add(endereco.getText());  
         lis = lis2;
         String pedido = lis.toString().substring(1, lis.toString().length()-1);
         System.out.println(pedido);
+        /*
         try {
             //MUDAR A URL PARA O CORRETO
             URL url = new URL("http://localhost:8080/RESTfulExample/json/product/post");
