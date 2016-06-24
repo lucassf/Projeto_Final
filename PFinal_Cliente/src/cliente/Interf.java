@@ -106,7 +106,10 @@ public class Interf extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //esqueleto da aplicação para criar o menu
         List<String> lista = new LinkedList<String>();
-
+        lista.add("pra1 32");        
+        lista.add("pra2 72");        
+        lista.add("pra3 62");
+        /*
         try
         {
           // create a url object
@@ -130,7 +133,7 @@ public class Interf extends javax.swing.JFrame {
           // read from the urlconnection via the bufferedreader
           while ((line = bufferedReader.readLine()) != null)
           {
-            //LINE: VAI TER UM PRATO E O SEU PREÇO
+            //LINE: VAI TER UM PRTO E O SEU PREÇO
             lista.add(line);
             
           }
@@ -139,8 +142,7 @@ public class Interf extends javax.swing.JFrame {
         catch(Exception e)
         {
           e.printStackTrace();
-        }
-      //  content.toString();
+        }*/
         DefaultListModel dlm = new DefaultListModel();
         for (int i = 0; i <lista.size(); i++)
             dlm.addElement(lista.get(i));
@@ -149,18 +151,29 @@ public class Interf extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        List<String> lis;
+        List<String> lis, lis2;
+        lis2 = new LinkedList<String>();
+        String temp[];
         lis = jList1.getSelectedValuesList();
-        lis.add(endereco.getText());        
+        for (int i = 0; i<lis.size(); i++){            
+            temp = lis.get(i).split(" ");
+      //      temp[0] = temp[0] + ";";
+       //     temp[1] = temp[1] + ";";
+            lis2.add(temp[0]);
+            lis2.add(temp[1]);
+        }        
+        lis2.add(endereco.getText());  
+        lis = lis2;
+        String pedido = lis.toString().substring(1, lis.toString().length()-1);
+        System.out.println(pedido);
         try {
-
             //MUDAR A URL PARA O CORRETO
             URL url = new URL("http://localhost:8080/RESTfulExample/json/product/post");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
-            String input = lis.toString();
+            String input = pedido;
             OutputStream os = conn.getOutputStream();
             os.write(input.getBytes());
             os.flush();
@@ -168,31 +181,22 @@ public class Interf extends javax.swing.JFrame {
 			throw new RuntimeException("Failed : HTTP error code : "
 				+ conn.getResponseCode());
             }
-
             BufferedReader br = new BufferedReader(new InputStreamReader(
 				(conn.getInputStream())));
             //abaixo: para testar  o que foi escrito no server 
-            /*
+            
             String output;
             System.out.println("Output from Server .... \n");
             while ((output = br.readLine()) != null) {
 			System.out.println(output);
-            }*/
-
+            }
             conn.disconnect();
-
 	  } catch (MalformedURLException e) {
-
 		e.printStackTrace();
-
 	  } catch (IOException e) {
-
 		e.printStackTrace();
-
 	 }
-
-		String input = "{\"qty\":100,\"name\":\"iPad 4\"}";
-        
+         
         /*for (int i = 0; i<lis.size(); i++)
         {
            String st[];
